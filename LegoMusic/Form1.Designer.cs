@@ -56,6 +56,7 @@
             this.cbRotCW = new System.Windows.Forms.CheckBox();
             this.cbRotCCW = new System.Windows.Forms.CheckBox();
             this.butStep = new System.Windows.Forms.Button();
+            this.cbDrum = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.nudInstrument)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbOctave)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbTranspose)).BeginInit();
@@ -65,14 +66,14 @@
             // nudInstrument
             // 
             this.nudInstrument.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.nudInstrument.Location = new System.Drawing.Point(741, 89);
+            this.nudInstrument.Location = new System.Drawing.Point(741, 85);
             this.nudInstrument.Maximum = new decimal(new int[] {
             127,
             0,
             0,
             0});
             this.nudInstrument.Name = "nudInstrument";
-            this.nudInstrument.Size = new System.Drawing.Size(225, 20);
+            this.nudInstrument.Size = new System.Drawing.Size(132, 20);
             this.nudInstrument.TabIndex = 3;
             this.nudInstrument.ValueChanged += new System.EventHandler(this.nudInstrument_ValueChanged);
             // 
@@ -90,7 +91,7 @@
             // 
             this.labTranspose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labTranspose.AutoSize = true;
-            this.labTranspose.Location = new System.Drawing.Point(953, 386);
+            this.labTranspose.Location = new System.Drawing.Point(955, 382);
             this.labTranspose.Name = "labTranspose";
             this.labTranspose.Size = new System.Drawing.Size(13, 13);
             this.labTranspose.TabIndex = 7;
@@ -100,7 +101,7 @@
             // 
             this.labOctave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labOctave.AutoSize = true;
-            this.labOctave.Location = new System.Drawing.Point(953, 470);
+            this.labOctave.Location = new System.Drawing.Point(956, 456);
             this.labOctave.Name = "labOctave";
             this.labOctave.Size = new System.Drawing.Size(13, 13);
             this.labOctave.TabIndex = 8;
@@ -110,7 +111,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(741, 370);
+            this.label1.Location = new System.Drawing.Point(743, 366);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(114, 13);
             this.label1.TabIndex = 9;
@@ -120,7 +121,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(742, 454);
+            this.label2.Location = new System.Drawing.Point(745, 440);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 13);
             this.label2.TabIndex = 10;
@@ -140,7 +141,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(738, 73);
+            this.label4.Location = new System.Drawing.Point(738, 69);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 13);
             this.label4.TabIndex = 12;
@@ -150,7 +151,7 @@
             // 
             this.tbOctave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tbOctave.LargeChange = 1;
-            this.tbOctave.Location = new System.Drawing.Point(742, 470);
+            this.tbOctave.Location = new System.Drawing.Point(745, 456);
             this.tbOctave.Maximum = 5;
             this.tbOctave.Minimum = -5;
             this.tbOctave.Name = "tbOctave";
@@ -162,7 +163,7 @@
             // 
             this.tbTranspose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.tbTranspose.LargeChange = 1;
-            this.tbTranspose.Location = new System.Drawing.Point(739, 386);
+            this.tbTranspose.Location = new System.Drawing.Point(741, 382);
             this.tbTranspose.Maximum = 8;
             this.tbTranspose.Minimum = -8;
             this.tbTranspose.Name = "tbTranspose";
@@ -173,7 +174,7 @@
             // sbNoteLength
             // 
             this.sbNoteLength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.sbNoteLength.Location = new System.Drawing.Point(745, 193);
+            this.sbNoteLength.Location = new System.Drawing.Point(745, 196);
             this.sbNoteLength.Maximum = 300;
             this.sbNoteLength.Minimum = 10;
             this.sbNoteLength.Name = "sbNoteLength";
@@ -186,7 +187,7 @@
             // 
             this.labNoteLength.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labNoteLength.AutoSize = true;
-            this.labNoteLength.Location = new System.Drawing.Point(945, 197);
+            this.labNoteLength.Location = new System.Drawing.Point(945, 200);
             this.labNoteLength.Name = "labNoteLength";
             this.labNoteLength.Size = new System.Drawing.Size(25, 13);
             this.labNoteLength.TabIndex = 16;
@@ -196,7 +197,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(740, 180);
+            this.label5.Location = new System.Drawing.Point(740, 183);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(87, 13);
             this.label5.TabIndex = 17;
@@ -205,7 +206,7 @@
             // sbTempo
             // 
             this.sbTempo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.sbTempo.Location = new System.Drawing.Point(745, 248);
+            this.sbTempo.Location = new System.Drawing.Point(745, 251);
             this.sbTempo.Maximum = 250;
             this.sbTempo.Minimum = 40;
             this.sbTempo.Name = "sbTempo";
@@ -218,7 +219,7 @@
             // 
             this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(738, 235);
+            this.label6.Location = new System.Drawing.Point(738, 238);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(75, 13);
             this.label6.TabIndex = 19;
@@ -228,7 +229,7 @@
             // 
             this.labTempo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labTempo.AutoSize = true;
-            this.labTempo.Location = new System.Drawing.Point(951, 252);
+            this.labTempo.Location = new System.Drawing.Point(951, 255);
             this.labTempo.Name = "labTempo";
             this.labTempo.Size = new System.Drawing.Size(19, 13);
             this.labTempo.TabIndex = 20;
@@ -243,7 +244,7 @@
             "Eighth ",
             "Sixteenth",
             "Thirty-second"});
-            this.cbBeatDuration.Location = new System.Drawing.Point(745, 310);
+            this.cbBeatDuration.Location = new System.Drawing.Point(745, 313);
             this.cbBeatDuration.Name = "cbBeatDuration";
             this.cbBeatDuration.Size = new System.Drawing.Size(221, 21);
             this.cbBeatDuration.TabIndex = 21;
@@ -253,7 +254,7 @@
             // 
             this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(740, 294);
+            this.label7.Location = new System.Drawing.Point(740, 297);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(73, 13);
             this.label7.TabIndex = 22;
@@ -262,7 +263,7 @@
             // sbVolume
             // 
             this.sbVolume.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.sbVolume.Location = new System.Drawing.Point(742, 141);
+            this.sbVolume.Location = new System.Drawing.Point(742, 144);
             this.sbVolume.Maximum = 127;
             this.sbVolume.Name = "sbVolume";
             this.sbVolume.Size = new System.Drawing.Size(229, 17);
@@ -274,7 +275,7 @@
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(740, 123);
+            this.label8.Location = new System.Drawing.Point(740, 126);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(45, 13);
             this.label8.TabIndex = 24;
@@ -335,7 +336,7 @@
             this.cbRotCW.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbRotCW.AutoSize = true;
             this.cbRotCW.Enabled = false;
-            this.cbRotCW.Location = new System.Drawing.Point(319, 521);
+            this.cbRotCW.Location = new System.Drawing.Point(326, 525);
             this.cbRotCW.Name = "cbRotCW";
             this.cbRotCW.Size = new System.Drawing.Size(79, 17);
             this.cbRotCW.TabIndex = 28;
@@ -347,7 +348,7 @@
             this.cbRotCCW.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbRotCCW.AutoSize = true;
             this.cbRotCCW.Enabled = false;
-            this.cbRotCCW.Location = new System.Drawing.Point(450, 521);
+            this.cbRotCCW.Location = new System.Drawing.Point(448, 525);
             this.cbRotCCW.Name = "cbRotCCW";
             this.cbRotCCW.Size = new System.Drawing.Size(86, 17);
             this.cbRotCCW.TabIndex = 29;
@@ -366,11 +367,25 @@
             this.butStep.UseVisualStyleBackColor = true;
             this.butStep.Click += new System.EventHandler(this.butStep_Click);
             // 
+            // cbDrum
+            // 
+            this.cbDrum.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbDrum.AutoSize = true;
+            this.cbDrum.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cbDrum.Location = new System.Drawing.Point(892, 86);
+            this.cbDrum.Name = "cbDrum";
+            this.cbDrum.Size = new System.Drawing.Size(78, 17);
+            this.cbDrum.TabIndex = 31;
+            this.cbDrum.Text = "Percussion";
+            this.cbDrum.UseVisualStyleBackColor = true;
+            this.cbDrum.CheckedChanged += new System.EventHandler(this.cbDrum_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1021, 567);
+            this.Controls.Add(this.cbDrum);
             this.Controls.Add(this.butStep);
             this.Controls.Add(this.cbRotCCW);
             this.Controls.Add(this.cbRotCW);
@@ -437,6 +452,7 @@
         private System.Windows.Forms.CheckBox cbRotCW;
         private System.Windows.Forms.CheckBox cbRotCCW;
         private System.Windows.Forms.Button butStep;
+        private System.Windows.Forms.CheckBox cbDrum;
     }
 }
 

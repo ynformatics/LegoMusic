@@ -7,6 +7,7 @@ using Emgu.CV.Util;
 using NAudio.Midi;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -37,31 +38,40 @@ namespace LegoMusic
 
         static int imageWidth = 640;//1280;//960;// 640;
         static int imageHeight = 480;//720;//480;
-        const int GridSide = 16;
-        int columnWidth = imageWidth / GridSide;
-        int rowHeight = imageHeight / GridSide;
+        static int gridSize = 16;
+        int columnWidth;
+        int rowHeight;
 
         public Form1()
         {
             InitializeComponent();
 
-            scales = new Dictionary<string, int[]>();
-            scales.Add("Ionian", new int[] { 60, 62, 64, 65, 67, 69, 71, 72, 74, 76, 77, 79, 81, 83, 84, 86 });
-            scales.Add("Dorian", new int[] { 60, 62, 63, 65, 67, 69, 70, 72, 74, 75, 77, 79, 81, 82, 84, 86 });
-            scales.Add("Phrygian", new int[] { 60, 61, 63, 65, 67, 68, 70, 72, 73, 75, 77, 79, 80, 83, 84, 85 });
-            scales.Add("Lydian", new int[] { 60, 62, 64, 66, 67, 69, 71, 72, 74, 76, 78, 79, 81, 83, 84, 86 });
-            scales.Add("Mixolydian", new int[] { 60, 62, 64, 65, 67, 69, 70, 72, 74, 76, 77, 79, 81, 82, 84, 86 });
-            scales.Add("Aeolian", new int[] { 60, 62, 63, 65, 67, 68, 70, 72, 74, 75, 77, 79, 80, 82, 84, 86 });
-            scales.Add("Locrian", new int[] { 60, 61, 63, 65, 66, 68, 70, 72, 73, 75, 77, 78, 80, 82, 84, 85 });
-            scales.Add("Chromatic", new int[] { 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75 });
-            scales.Add("Okinawa", new int[] { 60, 64, 65, 67, 71, 72, 76, 77, 79, 83, 84, 88, 89, 91, 95, 96 });
+            gridSize = GetIntAppSetting("gridsize", 16);
+            imageWidth = GetIntAppSetting("imagewidth", 640);
+            imageHeight = GetIntAppSetting("imageheight", 480);
+
+            columnWidth = imageWidth / gridSize;
+            rowHeight = imageHeight / gridSize;
+
+            scales = new Dictionary<string, int[]>
+            {
+                { "Ionian",     new int[] { 60, 62, 64, 65, 67, 69, 71, 72, 74, 76, 77, 79, 81, 83, 84, 86 } },
+                { "Dorian",     new int[] { 60, 62, 63, 65, 67, 69, 70, 72, 74, 75, 77, 79, 81, 82, 84, 86 } },
+                { "Phrygian",   new int[] { 60, 61, 63, 65, 67, 68, 70, 72, 73, 75, 77, 79, 80, 83, 84, 85 } },
+                { "Lydian",     new int[] { 60, 62, 64, 66, 67, 69, 71, 72, 74, 76, 78, 79, 81, 83, 84, 86 } },
+                { "Mixolydian", new int[] { 60, 62, 64, 65, 67, 69, 70, 72, 74, 76, 77, 79, 81, 82, 84, 86 } },
+                { "Aeolian",    new int[] { 60, 62, 63, 65, 67, 68, 70, 72, 74, 75, 77, 79, 80, 82, 84, 86 } },
+                { "Locrian",    new int[] { 60, 61, 63, 65, 66, 68, 70, 72, 73, 75, 77, 78, 80, 82, 84, 85 } },
+                { "Chromatic",  new int[] { 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75 } },
+                { "Okinawa",    new int[] { 60, 64, 65, 67, 71, 72, 76, 77, 79, 83, 84, 88, 89, 91, 95, 96 } }
+            };
 
             var parms = new SimpleBlobDetectorParams()
             {
                 FilterByCircularity = false,
                 FilterByArea = true,
-                MinArea = 500,
-                MaxArea = 2000,
+                MinArea = GetIntAppSetting("minblobarea", 500),
+                MaxArea = GetIntAppSetting("maxblobarea", 2000),
                 FilterByColor = false,
                 FilterByConvexity = false,
             };
@@ -70,9 +80,9 @@ namespace LegoMusic
 
             frame = new Mat();
 
-            midiOut = new MidiOut(0);
+            midiOut = new MidiOut(GetIntAppSetting("mididevice"));
 
-            frameGrabber = new VideoCapture(0);
+            frameGrabber = new VideoCapture(GetIntAppSetting("cameraindex"));
 
             frameGrabber.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameWidth, imageWidth);
             frameGrabber.SetCaptureProperty(Emgu.CV.CvEnum.CapProp.FrameHeight, imageHeight);
@@ -136,18 +146,18 @@ namespace LegoMusic
 
         Note[][] BlobsToNotes(MKeyPoint[] blobs, int volume)
         {
-            List<Note>[] noteList = new List<Note>[GridSide];
+            List<Note>[] noteList = new List<Note>[gridSize];
 
             foreach (var blob in blobs)
             {
-                var col = (int)(blob.Point.X * GridSide / imageWidth);
-                var row = GridSide - 1 - (int)(blob.Point.Y * GridSide / imageHeight);
+                var col = (int)(blob.Point.X * gridSize / imageWidth);
+                var row = gridSize - 1 - (int)(blob.Point.Y * gridSize / imageHeight);
 
                 if (noteList[col] == null)
                     noteList[col] = new List<Note>();
 
                 noteList[col].Add(new Note() { Pitch = Clamp127(scale[row] + transpose + octave), Volume = volume });
-            }        
+            }
 
             return noteList.Select(nl => nl?.ToArray()).ToArray();
         }
@@ -210,7 +220,7 @@ namespace LegoMusic
 
         private void UpdatePeriod()
         {
-            sequencer.Period = 3840000 / (beatDuration * sbTempo.Value) / GridSide;
+            sequencer.Period = 3840000 / (beatDuration * sbTempo.Value) / gridSize;
         }
         private void sbVolume_Scroll(object sender, ScrollEventArgs e)
         {
@@ -236,6 +246,22 @@ namespace LegoMusic
         private void butStep_Click(object sender, EventArgs e)
         {
             sequencer.Step();
+        }
+
+        private void cbDrum_CheckedChanged(object sender, EventArgs e)
+        {
+            sequencer.Channel = cbDrum.Checked ? 10 : 1;
+
+            nudInstrument.Enabled = !cbDrum.Checked;
+        }
+
+        int GetIntAppSetting(string name, int defaultValue = 0)
+        {
+            var setting = ConfigurationManager.AppSettings[name];
+            if (setting == null)
+                return defaultValue;
+
+            return int.TryParse(setting, out int val) ? val : defaultValue;
         }
     }
 }

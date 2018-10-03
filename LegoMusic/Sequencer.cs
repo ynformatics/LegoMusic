@@ -12,7 +12,6 @@ namespace LegoMusic
         MidiOut midiOut;
         AccurateTimer timer;
         int period;
-        int channel = 1;
 
         Note[][] notes;
 
@@ -27,6 +26,7 @@ namespace LegoMusic
 
         public int Column { get; private set; } = 0;
         public int Instrument { get; set; }
+        public int Channel { get; set; } = 1;
         public int NoteLength { get; set; }
         public int Period
         {
@@ -64,15 +64,15 @@ namespace LegoMusic
 
                 Task.Run(() =>
                 {
-                    midiOut.Send(MidiMessage.ChangePatch(Instrument, channel).RawData);
+                    midiOut.Send(MidiMessage.ChangePatch(Instrument, Channel).RawData);
 
                     foreach (var note in notes)
-                        midiOut.Send(MidiMessage.StartNote(note.Pitch, note.Volume, channel).RawData);
+                        midiOut.Send(MidiMessage.StartNote(note.Pitch, note.Volume, Channel).RawData);
 
                     Thread.Sleep(noteLength);
 
                     foreach (var note in notes)
-                        midiOut.Send(MidiMessage.StopNote(note.Pitch, note.Volume, channel).RawData);
+                        midiOut.Send(MidiMessage.StopNote(note.Pitch, note.Volume, Channel).RawData);
                 });
             
 
